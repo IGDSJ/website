@@ -1,0 +1,144 @@
+{% extends "base.html" %} {% block title %} Home {% endblock %}
+
+{% block content %}
+<h3><div class="w3-panel w3-leftbar">
+        <p class="w3-left w3-animate-right">{{"Welcome, " + user.first_name}}</p>
+</div></h3>
+
+<div align="center">
+<h1>Análise Fotovoltaica</h1>
+    <hr>
+    <div>
+        <!-- <a class="w3-button w3-block w3-teal" style="width:50%" id="inserir" href="/inserir">Inserir dados</a> -->
+
+        <button onclick="document.getElementById('id01').style.display='block'"
+        class="w3-button w3-block w3-teal" style="width:50%">Inserir dados</button>
+
+        <div id="id01" class="w3-modal">
+        <div class="w3-modal-content">
+            <div class="w3-container">
+            <span onclick="document.getElementById('id01').style.display='none'"
+            class="w3-button w3-display-topright">&times;</span>
+            <p>*Arquivo no formato CSV*</p>
+            <form
+            action="http://localhost:5000/upload"
+            method="POST"
+            enctype="multipart/form-data"
+            onsubmit="return validateForm()"
+            name ='myForm'
+            >
+            <input type="file" name="file" />
+            <hr>
+            <input type="submit" />
+            </form>
+
+            </div>
+        </div>
+        </div>
+        </div>  
+
+        <hr>
+        <!-- <a class="w3-button w3-block w3-green" style="width:50%" id="visualizar" href="/visualizar">Visualizar dados</a>
+        -->
+        <button onclick="document.getElementById('id02').style.display='block'"
+        class="w3-button w3-block w3-green" style="width:50%">Visualizar dados</button>
+
+        <div id="id02" class="w3-modal">
+        <div class="w3-modal-content">
+            <div class="w3-container">
+            <span onclick="document.getElementById('id02').style.display='none'"
+            class="w3-button w3-display-topright">&times;</span>
+            <p>Dados</p>
+
+            <ul class="list-group list-group-flush">
+            {% for todo in todos %}
+            <li class="list-group-item">{{ todo}}</li>
+            {% endfor %}
+            </ul>
+
+            </div>
+        </div>
+        </div>
+
+        <hr>
+        <button onclick="document.getElementById('id03').style.display='block'"
+        class="w3-button w3-block w3-orange" style="width:50%">Relatório</button>
+
+        <div id="id03" class="w3-modal">
+        <div class="w3-modal-content">
+            <div class="w3-container">
+            <span onclick="document.getElementById('id03').style.display='none'"
+            class="w3-button w3-display-topright">&times;</span>
+            <p>Dados</p>
+            
+            <form align="left" method="POST"
+            action="http://localhost:5000/relatorio"
+            enctype="multipart/form-data">
+                <p>
+                <label for="planta">Planta:</label>
+                    <select  name="planta" class="form-control">
+                      <option value="">-- Select --</option>
+                      <option value="Plant_1_Generation_Data.csv">Planta de Caicó</option>
+                      <option value="Plant_2_Generation_Data.csv">Planta de Ponta Negra</option>
+                    </select>
+                </p>
+                <p>
+                <label for="placa">Placa:</label>
+                    <select  name="placa" class="form-control">
+                      <option value="">-- Select --</option>
+                      <option value="1BY6WEcLGh8j5v7">Placa 01</option>
+                      <option value="1IF53ai7Xc0U56Y">Placa 02</option>
+                      <option value="3PZuoBAID5Wc2HD">Placa 03</option>
+                      <option value="7JYdWkrLSPkdwr4">Placa 04</option>
+                      <option value="McdE0feGgRqW7Ca">Placa 05</option>
+                      <option value="VHMLBKoKgIrUVDU">Placa 06</option>
+                      <option value="WRmjgnKYAwPKWDb">Placa 07</option>
+                      <option value="ZnxXDlPa8U1GXgE">Placa 08</option>
+                      <option value="todas">Todas</option>
+                    </select>
+                </p>
+                
+                <p>
+                  <label for="grandeza">Grandeza:</label>
+                      <select  name="grandeza" class="form-control">
+                        <option value="">-- Select --</option>
+                        <option value="DC_POWER">DC POWER</option>
+                        <option value="AC_POWER">AC POWER</option>
+                      </select>
+                </p>
+
+                <p>
+                    <label for="modo">Modo Temporal:</label>
+                        <select  name="modo" class="form-control">
+                          <option value="">-- Select --</option>
+                          <option value="mensal">Mensal</option>
+                          <option value="diario">Diário</option>
+                          <option value="horario">Horário</option>
+                          <option value="total">Total</option>
+                        </select>
+                  </p>
+                
+                <p>
+                <label for="tempo">Data:</label>
+                <input type="text" name="tempo"
+                placeholder="Data" class="form-control"></input>
+                </p>
+                
+                <p align="center" ><button type="submit" class="btn btn-primary">Consultar</button></input></p>
+            </form>
+            </div>
+        </div>
+        </div>
+
+    </div>  
+    <hr>
+    <h5 align='center'>O que podemos melhorar?</h5>
+    <form method="POST">
+    <textarea name="note" id="note" class="form-control"></textarea>
+    <hr>
+    <div align='center'>
+        <button type="submit" class="btn btn-primary">Add Note</button>
+    </div>
+    </form>
+     
+{% endblock %}

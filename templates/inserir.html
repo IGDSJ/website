@@ -1,0 +1,149 @@
+{% extends "base.html" %} {% block title %} Inserção {% endblock %}
+
+{% block content %}
+<h1 align="center">Formulário</h1>
+
+<form method="post">
+<p>
+<label for="school">Escola:</label>
+    <select  name="school" class="form-control">
+      <option value="">-- Select --</option>
+      <option value="GP">Gabriel Pereira</option>
+      <option value="MS">Mousinho da Silveira</option>
+    </select>
+</p>
+
+<p>
+  <label for="sex">Sexo:</label>
+      <select  name="sex" class="form-control">
+        <option value="">-- Select --</option>
+        <option value="M">Masculino</option>
+        <option value="F">Feminino</option>
+      </select>
+  </p>
+
+  <p>
+    <label for="age">Idade:</label>
+    <input type="number" step="any" name="age"
+    placeholder="Idade" class="form-control"></input>
+    </p>
+
+    <p>
+      <label for="address">Tipo de endereço:</label>
+          <select  name="adress" class="form-control">
+            <option value="">-- Select --</option>
+            <option value="U">Urbano</option>
+            <option value="B">Rural</option>
+          </select>
+      </p>
+
+      <p>
+        <label for="famsize">Tamanho da família:</label>
+            <select  name="famsize" class="form-control">
+              <option value="">-- Select --</option>
+              <option value="LE3">Menos ou igual a 3 membros</option>
+              <option value="GT3">Mais que 3 membros</option>
+            </select>
+        </p>
+
+        <p>
+          <label for="Medu">Formação da mãe:</label>
+              <select  name="Medu" class="form-control">
+                <option value="">-- Select --</option>
+                <option value=0>Nenhuma</option>
+                <option value=1>Primário</option>
+                <option value=2>Fundamental</option>
+                <option value=3>Ensino médio</option>
+                <option value=4>Graduação</option>
+              </select>
+          </p>
+
+          <p>
+            <label for="Fedu">Formação do pai:</label>
+              <select  name="Fedu" class="form-control">
+                <option value="">-- Select --</option>
+                <option value=0>Nenhuma</option>
+                <option value=1>Primário</option>
+                <option value=2>Fundamental</option>
+                <option value=3>Ensino médio</option>
+                <option value=4>Graduação</option>
+              </select>
+            </p>
+
+            <p>
+              <label for="Mjob">Profissão da mãe:</label>
+              <input type="text" name="Mjob"
+              placeholder="Profissão" class="form-control"></input>
+              </p>
+
+              <p>
+                <label for="Fjob">Profissão do pai:</label>
+              <input type="text" name="Fjob"
+              placeholder="Profissão" class="form-control"></input>
+                </p>
+
+                <p>
+                  <label for="reason">Por que escolheu a escola?:</label>
+                      <select  name="reason" class="form-control">
+                        <option value="">-- Select --</option>
+                        <option value="close to home">Próximo a minha residência</option>
+                        <option value="school reputation">Reputação da escola</option>
+                        <option value="course preference">Preferência de curso</option>
+                        <option value="other">Outros</option>
+                      </select>
+                  </p>
+
+                  <p>
+                    <label for="guardian">Responsável pelo estudade:</label>
+                        <select  name="guardian" class="form-control">
+                          <option value="">-- Select --</option>
+                          <option value="mother">Mãe</option>
+                          <option value="father">Pai</option>
+                          <option value="other">Outro</option>
+                        </select>
+                    </p>
+
+                    <p>
+                      <label for="traveltime">Tempo que gasta de casa para escola:</label>
+                          <select  name="traveltime" class="form-control">
+                            <option value="">-- Select --</option>
+                            <option value=1> menos que 15 minutos </option>
+                            <option value=2> 15 a 30 minutos </option>
+                            <option value=3> 30 minutos a 1 hora </option>
+                            <option value=4> mais que 1 hora </option>
+                          </select>
+                      </p>
+
+                      <p>
+                        <label for="studytime">Tempo dedicado ao estudo:</label>
+                            <select  name="studytime" class="form-control">
+                              <option value="">-- Select --</option>
+                            <option value=1> menos que 2 horas </option>
+                            <option value=2> 2 a 5 horas </option>
+                            <option value=3> 5 a 10 horas </option>
+                            <option value=4> mais que 10 horas </option>
+                            </select>
+                        </p>
+
+                        <p>
+                          <label for="G1">Primeira nota:</label>
+                          <input type="number" step="any" name="G1"
+                          placeholder="1 EE" class="form-control"></input>
+                          </p>
+
+                          <p>
+                            <label for="G2">Segunda nota:</label>
+                            <input type="number" step="any" name="G2"
+                            placeholder="2 EE" class="form-control"></input>
+                            </p>
+
+                            <p>
+                              <label for="G3">Terceira nota:</label>
+                              <input type="number" step="any" name="G3"
+                              placeholder="3 EE" class="form-control"></input>
+                              </p>
+
+  <p align="center" ><input type="submit"></input></p>
+</form>
+
+{% endblock %}

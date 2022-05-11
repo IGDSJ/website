@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="uft-8"/>
+        <meta name ="viewport" content="width=device-width, initial-scale=1" />
+
+        <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+        crossorigin="anonymous"
+        />
+
+        <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+        crossorigin="anonymous"
+        />
+
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        
+    <title>
+        {% block title %} Home {% endblock %}
+    </title>
+    </head>
+
+    <body>
+      <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+          <div class="navbar-header">
+
+          <button
+          class="navbar-toggler" 
+          type="button" 
+          data-toggle="collapse" 
+          data-target="#opcao"> 
+          <span class="navbar-toggler-icon"></span>            
+          </button>
+
+          <a class="navbar-brand" href="#">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmzKqsxufWgvBdawp5myjqh54oqQgyGBt_wA&usqp=CAU" style="width:50%" alt=""
+           onclick="document.getElementById('modal01').style.display='block'" class="w3-hover-opacity" >
+          <div id="modal01" class="w3-modal w3-animate-zoom" onclick="this.style.display='none'">
+          <img class="w3-modal-content" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmzKqsxufWgvBdawp5myjqh54oqQgyGBt_wA&usqp=CAU"
+          style="width:100%"></div></a>
+          
+          <div class="collapse navbar-collapse" id="opcao">
+          <hr>
+          <div class="position-sticky">
+          <div class="col-12 col-md-15">
+          <div class="list-group list-group-flush mx-0 mt-0">
+            {% if user.is_authenticated %}
+            <a class="list-group-item list-group-item-action py-1 ripple active" id="home" href="/">
+            <i class="fas fa-chart-area fa-fw me-3"></i> <i class="fa fa-home"></i> Home</a>
+
+            <a class="list-group-item list-group-item-action py-1 ripple" id="inserir" 
+             onclick="document.getElementById('id01').style.display='block'" > 
+            <i class="fas fa-chart-area fa-fw me-3"></i><i class="fa fa-arrow-right"></i>Inserir dados</a>
+
+            <a class="list-group-item list-group-item-action py-1 ripple" id="visualizar" 
+             onclick="document.getElementById('id02').style.display='block'" > 
+            <i class="fas fa-chart-area fa-fw me-3"></i><i class="fa fa-eye"></i>Visualizar dados</a>
+
+            <a class="list-group-item list-group-item-action py-1 ripple" id="criar_relatorio" 
+            onclick="document.getElementById('id03').style.display='block'" > 
+           <i class="fas fa-chart-area fa-fw me-3"></i><i class="fa fa-envelope"></i>Relatório</a>
+
+            <a class="list-group-item list-group-item-action py-1 ripple" id="logout" href="/logout">
+            <i class="fas fa-tachometer-alt fa-fw me-3"></i><i class="fa fa-sign-out"></i> Logout</a>
+
+            {% else %}
+            <a class="list-group-item list-group-item-action py-1 ripple" id="login" href="/login">
+              <i class="fas fa-tachometer-alt fa-fw me-3"></i><i class="fa fa-sign-in"></i> Login</a>
+              
+            <a class="list-group-item list-group-item-action py-1 ripple" id="signUp" href="/sign-up">
+              <i class="fas fa-tachometer-alt fa-fw me-3"></i><i class="fa fa-user"></i> Sign Up</a>
+            {%endif%}
+          </div>
+          </div>
+          </div>
+          </div>
+
+        </div>
+
+          {% if user.is_authenticated %}
+          <ul class="nav navbar-brand navbar-right">
+              <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTKY_c3ZZXkg6RtGfSl6OskiF8hUI-JtvUL7w&usqp=CAU" width="40" height="40" class="rounded-circle">
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="#">Edit Profile</a>
+                <a class="dropdown-item" id ='logout'href="/logout">Log Out</a>
+              </div>
+            </li>   
+          </ul>
+          {%endif%}
+        </div>
+        
+      </nav>
+      
+        {% with messages=get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        {% if category=='error' %}
+        <div class="alert alert-danger alter-dismissable fade show" role="alert">
+        {{ message }}
+          <button type="button" class="close" data_dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% else %}
+        <div class="alert alert-success alter-dismissable fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data_dismiss="alert">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+
+        <div class="container">
+          {% block content %}
+          {% endblock %}
+        </div>
+      
+        <!-- <script type="text/javascript"
+        src="{{ url_for('static', filename='index.js') }}"></script> -->
+
+        <!-- <script>
+              function showDiv(prefix, chooser) {
+          var selectedOption = (chooser.options[chooser.selectedIndex].value);
+          if (selectedOption == "2") {
+            var div = document.getElementById(prefix + "2");
+            div.style.display = 'block';
+          } if (selectedOption == "1") {
+            var div = document.getElementById(prefix + "1");
+            div.style.display = 'block';
+          } else {
+            var div = document.getElementById(prefix + "2");
+            div.style.display = 'None';
+          }
+          }
+          </script> -->
+        
+          <script
+          src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+          integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+          crossorigin="anonymous"
+          ></script>
+          
+          <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+          ></script>
+  
+          <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"></script>
+
+          <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+          <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>       
+          <script>
+            function validateForm() {
+            var x = document.forms["myForm"]["file"].value.split('.');
+            if (x[x.length-1] != "csv") {
+              alert("Insira um arquivo CSV");
+              return false;
+            }
+          }
+          </script>
+        </body>
+</html>
+
